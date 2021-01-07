@@ -7,9 +7,9 @@ class User(AbstractUser):
     lastName = models.CharField(max_length=255)
     username = models.CharField(max_length=255,unique=True)
     email = models.EmailField(db_index=True, unique=True)
-    mobileNumber = models.CharField(null=True,max_length=18, unique=True)
-    position = models.CharField(null=True, max_length=50)
-    team = models.CharField(null=True, max_length=50)
+    mobileNumber = models.CharField(max_length=18, unique=True)
+    position = models.CharField(null=False,blank=False, max_length=50)
+    team = models.CharField(null=False, blank=False,max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
 
 class ConfRoom(models.Model):
