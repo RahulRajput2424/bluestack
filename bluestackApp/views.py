@@ -81,7 +81,7 @@ class EmployeeDeleteView(DestroyAPIView):
 class RoomCreateView(CreateAPIView):
     queryset = ConfRoom.objects.all()
     serializer_class = RoomCreateSerializer
-    permission_classes = [IsAuthenticated,IsAdminUser]
+    permission_classes = [IsAuthenticated,AdminPermission]
 
 class RoomDetailView(ListAPIView):
     queryset = ConfRoom.objects.all()

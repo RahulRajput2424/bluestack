@@ -15,7 +15,7 @@ class User(AbstractUser):
 class ConfRoom(models.Model):
     name = models.CharField(max_length=255,unique=True)
     bookingMail =  models.EmailField(db_index=True, unique=True)
-    sitting = models.CharField(null=True,max_length=18)
+    sitting = models.CharField(null=False,max_length=18,blank=False)
     currentStatus = models.CharField(choices=RoomStatus.CHOICES,default=RoomStatus.AVAILABLE,max_length=UserType.MAX_LENGTH,blank=False,null=False)
 
 

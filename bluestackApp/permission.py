@@ -1,3 +1,4 @@
+from .models import User
 from rest_framework import permissions
 
 class AdminPermission(permissions.BasePermission):
@@ -7,3 +8,9 @@ class AdminPermission(permissions.BasePermission):
     		return True
     	else:
 	    	return False
+# class IsEnggManager(permissions.BasePermission):
+#     def has_permission(self,request,view):
+#     	if User.objects.filter(id=request.user.id).user_type
+    	
+
+    		
