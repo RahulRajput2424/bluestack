@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login
 from rest_framework.response import Response
 from .models import User
 from rest_framework.generics import CreateAPIView
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework import status, serializers, authentication
 from rest_framework.authtoken.models import Token
 from bluestackApp.permission import AdminPermission
@@ -49,13 +49,4 @@ class UserLoginView(APIView):
 class EmpoloyeeCreate(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSignupSerializer
-    authentication_classes = []
-    permission_classes = [IsAuthenticated,AdminPermission]
-
-    def create(self, request, *args, **kwargs):
-        response = super().create(request, *args, **kwargs)
-        return Response({
-            'status': 200,
-            'message': 'Emp;loyee Created',
-            'data': response.data
-        }) 
+    permission_classes = [IsAuthenticated,IsAdminUser]
