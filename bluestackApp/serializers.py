@@ -9,13 +9,17 @@ class UserSignupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['user_type','email', 'mobileNumber', 'password', 'username']
+        fields = ['user_type','email', 'mobileNumber', 'password', 'username','firstName','lastName','team','position']
 
     def create(self, validate_data):
         user = User(mobileNumber=validate_data['mobileNumber'],
         username=validate_data['username'],
         email=validate_data['email'],
         user_type=validate_data['user_type'],
+        firstName = validate_data['firstName'],
+        lastName = validate_data['lastName'],
+        team = validate_data['team'],
+        position = validate_data['position'],
         )
         user.set_password(validate_data['password'])
         user.save()
@@ -49,3 +53,8 @@ class UserLoginSerializer(serializers.Serializer):
             raise serializers.ValidationError('Must include "username" and "password".')
         validate_data["user"] = user
         return validate_data
+
+class EmployeeDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+         model = User
+         fields = ['id','user_type','email','firstName','lastName','team','position']

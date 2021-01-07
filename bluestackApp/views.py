@@ -1,13 +1,13 @@
 from django.shortcuts import render
 
 import datetime
-from .serializers import UserSignupSerializer, UserLoginSerializer
+from .serializers import UserSignupSerializer, UserLoginSerializer, EmployeeDetailSerializer
 from django.http import HttpResponse
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate, login
 from rest_framework.response import Response
 from .models import User
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework import status, serializers, authentication
 from rest_framework.authtoken.models import Token
@@ -46,7 +46,13 @@ class UserLoginView(APIView):
             error_data = serializer.errors
             return Response(data=error_data)
 
-class EmpoloyeeCreate(CreateAPIView):
+class EmpoloyeeCreateView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSignupSerializer
     permission_classes = [IsAuthenticated,IsAdminUser]
+
+class EmployeeDetailView(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = EmployeeDetailSerializer
+    permission_classes = [IsAuthenticated]
+
