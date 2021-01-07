@@ -64,3 +64,8 @@ class EmployeeUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model= User 
         fields = ['id','user_type','email','firstName','lastName','team','position']
+
+class EmployeeDeleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= User 
+        fields = ['id','user_type','email','firstName','lastName','team','position']

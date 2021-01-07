@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from bluestackApp.CommonEnum import UserType
+from bluestackApp.CommonEnum import UserType, RoomStatus
 class User(AbstractUser):
     user_type = models.CharField(choices=UserType.CHOICES,default=None,max_length=UserType.MAX_LENGTH,blank=True,null=True)
     firstName = models.CharField(max_length=255)
@@ -11,4 +11,12 @@ class User(AbstractUser):
     position = models.CharField(null=True, max_length=50)
     team = models.CharField(null=True, max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
+
+class ConfRoom(models.Model):
+    name = models.CharField(max_length=255)
+    bookingMail =  models.EmailField(db_index=True, unique=True)
+    sitting = models.CharField(null=True,max_length=18)
+    currentStatus = models.CharField(choices=RoomStatus.CHOICES,default=RoomStatus.AVAILABLE,max_length=UserType.MAX_LENGTH,blank=True,null=True)
+
+
 

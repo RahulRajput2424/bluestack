@@ -10,3 +10,15 @@ class UserType:
         (EMPLOYEE, 'Employee'),
     )
     REPR = dict(CHOICES)
+
+class RoomStatus:
+    AVAILABLE = 'AV'
+    BOOKED = "BO"
+
+    MAX_LENGTH = 2
+    CHOICES = (
+        (AVAILABLE, 'Engg Manager'),
+        (BOOKED, 'Office Manager'),
+    )
+    REPR = dict(CHOICES)
+
