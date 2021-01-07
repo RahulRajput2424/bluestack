@@ -9,6 +9,8 @@ Note The app is also hosted on heroku
 User sign up View
 --------------------------------------------------------
 http://127.0.0.1:8000/bluestackApp/user-signup-view/
+or
+https://stark-eyrie-09414.herokuapp.com/bluestackApp/user-signup-view/
 --------------------------------------------------------
 Method : POST
 
@@ -27,11 +29,11 @@ Param= {
 
 User Login In View
 --------------------------------------------------------
-http://127.0.0.1:8000/bluestackApp/user-signup-view/
+http:// http://127.0.0.1:8000/bluestackApp/user-login-view/
+or 
+https://stark-eyrie-09414.herokuapp.com/bluestackApp/user-login-view/
 --------------------------------------------------------
 Method : POST
-
- Login: URL: http://127.0.0.1:8000/bluestackApp/user-login-view/
  
  Param ={
     "email": "user@gmail.com", "password":"user"
@@ -41,6 +43,9 @@ Method : POST
 Create Employee View
 --------------------------------------------------------
 http://127.0.0.1:8000/bluestackApp/create-employee/
+or
+https://stark-eyrie-09414.herokuapp.com/bluestackApp/create-employee/
+
 --------------------------------------------------------
 Method : POST
 Param = 
@@ -59,6 +64,9 @@ Param =
 Employee Detail View
 --------------------------------------------------------
 http://127.0.0.1:8000/bluestackApp/employee-detail/
+or 
+https://stark-eyrie-09414.herokuapp.com/bluestackApp/employee-detail/
+
 --------------------------------------------------------
 Method : GET
 
@@ -68,6 +76,9 @@ Method : GET
 Update EMployee View
 --------------------------------------------------------
 http://127.0.0.1:8000/bluestackApp/employee-update/
+or
+https://stark-eyrie-09414.herokuapp.com/bluestackApp/employee-update/
+
 --------------------------------------------------------
 Method : PUT/ PATCH
 For Patch please provide some value so it would be partial update
@@ -88,6 +99,9 @@ Param =
 Delete Employee View
 --------------------------------------------------------
 http://127.0.0.1:8000/bluestackApp/employee-delete/1
+or
+https://stark-eyrie-09414.herokuapp.com/bluestackApp/employee-delete/1
+
 --------------------------------------------------------
 Method : DELETE
 Over here lookup field is by default is pk
@@ -99,6 +113,9 @@ Over here lookup field is by default is pk
 Create-room View
 --------------------------------------------------------
 http://127.0.0.1:8000/bluestackApp/create-room/
+or 
+https://stark-eyrie-09414.herokuapp.com/bluestackApp/create-room/
+
 --------------------------------------------------------
 Method : POST
 Params = {"bookingMail": "abc@gmail.com",
@@ -112,6 +129,9 @@ Params = {"bookingMail": "abc@gmail.com",
 Detail room View
 --------------------------------------------------------
 http://127.0.0.1:8000/bluestackApp/room-detail/
+or
+https://stark-eyrie-09414.herokuapp.com/bluestackApp/room-detail/
+
 --------------------------------------------------------
 Method : GET
 Response :==>
@@ -151,6 +171,8 @@ Response :==>
 Delete room View
 --------------------------------------------------------
 http://127.0.0.1:8000/bluestackApp/room-delete/1
+or
+https://stark-eyrie-09414.herokuapp.com/bluestackApp/room-delete/1
 --------------------------------------------------------
 Method: Delete 
 
@@ -158,5 +180,8 @@ Method: Delete
 Update room View
 --------------------------------------------------------
 http://127.0.0.1:8000/bluestackApp/room-detail-update/
+or
+https://stark-eyrie-09414.herokuapp.com/bluestackApp/room-detail-update/
+
 --------------------------------------------------------
 Method : PUT/ PATCH
