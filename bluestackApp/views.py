@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from rest_condition import Or
 import datetime
 from .serializers import(
     UserSignupSerializer,
@@ -22,7 +22,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView, D
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework import status, serializers, authentication
 from rest_framework.authtoken.models import Token
-from bluestackApp.permission import AdminPermission
+from bluestackApp.permission import AdminPermission, IsEnggManager, IsOfficeManager, IsEmployee
 
 class UserSignupView(CreateAPIView):
     queryset = User.objects.all()
@@ -60,38 +60,38 @@ class UserLoginView(APIView):
 class EmpoloyeeCreateView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSignupSerializer
-    permission_classes = [IsAuthenticated,IsAdminUser]
+    permission_classes = (Or(IsAuthenticated,IsEnggManager,AdminPermission),)
 
 class EmployeeDetailView(ListAPIView):
     queryset = User.objects.all()
     serializer_class = EmployeeDetailSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (Or(IsAuthenticated,IsEnggManager,AdminPermission,IsEmployee),)
 
 class EmployeeUpdateView(UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = EmployeeUpdateSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (Or(IsAuthenticated,IsEnggManager,AdminPermission),)
 
 class EmployeeDeleteView(DestroyAPIView):
     queryset = User.objects.all()
     serializer_class = EmployeeDeleteSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated,AdminPermission]
 
 
 class RoomCreateView(CreateAPIView):
     queryset = ConfRoom.objects.all()
     serializer_class = RoomCreateSerializer
-    permission_classes = [IsAuthenticated,AdminPermission]
+    permission_classes = (Or(IsAuthenticated,IsOfficeManager,AdminPermission),)
 
 class RoomDetailView(ListAPIView):
     queryset = ConfRoom.objects.all()
     serializer_class = RoomDetailSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (Or(IsAuthenticated,IsOfficeManager,AdminPermission,IsEmployee),)
 
 class RoomUpdateView(UpdateAPIView):
     queryset = ConfRoom.objects.all()
     serializer_class = RoomUpdateSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (Or(IsAuthenticated,IsOfficeManager,AdminPermission),)
 
 class RoomDeleteView(DestroyAPIView):
     queryset = ConfRoom.objects.all()
