@@ -13,10 +13,10 @@ class User(AbstractUser):
     created_at = models.DateTimeField(auto_now_add=True)
 
 class ConfRoom(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255,unique=True)
     bookingMail =  models.EmailField(db_index=True, unique=True)
     sitting = models.CharField(null=True,max_length=18)
-    currentStatus = models.CharField(choices=RoomStatus.CHOICES,default=RoomStatus.AVAILABLE,max_length=UserType.MAX_LENGTH,blank=True,null=True)
+    currentStatus = models.CharField(choices=RoomStatus.CHOICES,default=RoomStatus.AVAILABLE,max_length=UserType.MAX_LENGTH,blank=False,null=False)
 
 
 

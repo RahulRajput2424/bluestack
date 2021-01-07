@@ -1,12 +1,23 @@
 from django.shortcuts import render
 
 import datetime
-from .serializers import UserSignupSerializer, UserLoginSerializer, EmployeeDetailSerializer, EmployeeUpdateSerializer,EmployeeDeleteSerializer
+from .serializers import(
+    UserSignupSerializer,
+    UserLoginSerializer, 
+    EmployeeDetailSerializer, 
+    EmployeeUpdateSerializer,
+    EmployeeDeleteSerializer,
+    RoomCreateSerializer,
+    RoomDetailSerializer, 
+    RoomUpdateSerializer,
+    RoomDeleteSerializer
+    
+    )
 from django.http import HttpResponse
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate, login
 from rest_framework.response import Response
-from .models import User
+from .models import User, ConfRoom
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework import status, serializers, authentication
@@ -64,6 +75,27 @@ class EmployeeUpdateView(UpdateAPIView):
 class EmployeeDeleteView(DestroyAPIView):
     queryset = User.objects.all()
     serializer_class = EmployeeDeleteSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class RoomCreateView(CreateAPIView):
+    queryset = ConfRoom.objects.all()
+    serializer_class = RoomCreateSerializer
+    permission_classes = [IsAuthenticated,IsAdminUser]
+
+class RoomDetailView(ListAPIView):
+    queryset = ConfRoom.objects.all()
+    serializer_class = RoomDetailSerializer
+    permission_classes = [IsAuthenticated]
+
+class RoomUpdateView(UpdateAPIView):
+    queryset = ConfRoom.objects.all()
+    serializer_class = RoomUpdateSerializer
+    permission_classes = [IsAuthenticated]
+
+class RoomDeleteView(DestroyAPIView):
+    queryset = ConfRoom.objects.all()
+    serializer_class = RoomDeleteSerializer
     permission_classes = [IsAuthenticated]
 
 

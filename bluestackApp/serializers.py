@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from bluestackApp.models import User
+from bluestackApp.models import User, ConfRoom
 from django.contrib.auth import authenticate, login
 
 class UserSignupSerializer(serializers.ModelSerializer):
@@ -69,3 +69,27 @@ class EmployeeDeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model= User 
         fields = ['id','user_type','email','firstName','lastName','team','position']
+class RoomCreateSerializer(serializers.ModelSerializer):
+    bookingMail = serializers.EmailField(validators=[UniqueValidator(queryset=ConfRoom.objects.all())])
+    class Meta:
+        model= ConfRoom 
+        fields = '__all__'
+        
+class RoomDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= ConfRoom 
+        fields = '__all__'
+        
+class RoomUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= ConfRoom 
+        fields = ['name','bookingMail','sitting','currentStatus']
+        
+class RoomDeleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= ConfRoom 
+        fields = '__all__'
+        
+
+
+    
