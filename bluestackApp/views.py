@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_condition import Or
+from rest_condition import Or, And
 import datetime
 from .serializers import(
     UserSignupSerializer,
@@ -60,17 +60,17 @@ class UserLoginView(APIView):
 class EmpoloyeeCreateView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSignupSerializer
-    permission_classes = (Or(IsAuthenticated,IsEnggManager,AdminPermission),)
+    permission_classes = (Or(IsEnggManager,AdminPermission),)
 
 class EmployeeDetailView(ListAPIView):
     queryset = User.objects.all()
     serializer_class = EmployeeDetailSerializer
-    permission_classes = (Or(IsAuthenticated,IsEnggManager,AdminPermission,IsEmployee),)
+    permission_classes = (Or(IsEnggManager,AdminPermission,IsEmployee),)
 
 class EmployeeUpdateView(UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = EmployeeUpdateSerializer
-    permission_classes = (Or(IsAuthenticated,IsEnggManager,AdminPermission),)
+    permission_classes = (Or(And(IsAuthenticated,IsEnggManager),AdminPermission),)
 
 class EmployeeDeleteView(DestroyAPIView):
     queryset = User.objects.all()
@@ -81,21 +81,22 @@ class EmployeeDeleteView(DestroyAPIView):
 class RoomCreateView(CreateAPIView):
     queryset = ConfRoom.objects.all()
     serializer_class = RoomCreateSerializer
-    permission_classes = (Or(IsAuthenticated,IsOfficeManager,AdminPermission),)
+    permission_classes = (Or(And(IsAuthenticated,IsOfficeManager),AdminPermission),)
 
 class RoomDetailView(ListAPIView):
     queryset = ConfRoom.objects.all()
     serializer_class = RoomDetailSerializer
-    permission_classes = (Or(IsAuthenticated,IsOfficeManager,AdminPermission,IsEmployee),)
+    permission_classes = [Or(And(IsAuthenticated,IsOfficeManager),And(IsAuthenticated,IsEmployee),AdminPermission),]
 
 class RoomUpdateView(UpdateAPIView):
     queryset = ConfRoom.objects.all()
     serializer_class = RoomUpdateSerializer
-    permission_classes = (Or(IsAuthenticated,IsOfficeManager,AdminPermission),)
+    permission_classes = [Or(And(IsAuthenticated,IsOfficeManager),AdminPermission),]
 
 class RoomDeleteView(DestroyAPIView):
     queryset = ConfRoom.objects.all()
     serializer_class = RoomDeleteSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated,AdminPermission]
+
 
 
